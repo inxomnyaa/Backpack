@@ -1,4 +1,4 @@
-# ![Backpack with camouflage pattern](https://github.com/thebigsmileXD/Backpack/blob/master/resources/github/backpack.png) Backpack
+# <img alt="Backpack with camouflage pattern" src="https://github.com/thebigsmileXD/Backpack/blob/master/resources/github/backpack.png" height="100px" width="auto"> Backpack
 [![Poggit-CI](https://poggit.pmmp.io/ci.badge/thebigsmileXD/Backpack/Backpack/master)](https://poggit.pmmp.io/ci/thebigsmileXD/Backpack) [![](https://poggit.pmmp.io/shield.state/Backpack)](https://poggit.pmmp.io/p/Backpack) [![](https://poggit.pmmp.io/shield.api/Backpack)](https://poggit.pmmp.io/p/Backpack)
 ***Get wearable backpacks for your PocketMine-MP server! Supports custom models and textures!***
 
