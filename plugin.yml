@@ -1,0 +1,13 @@
+name: Backpack
+main: xenialdan\Backpack\Loader
+version: 0.0.1
+api: [3.9.3]
+author: XenialDan
+permissions:
+#TODO
+  backpack.command:
+    description: Permission for /backpack command
+    default: op
+  backpack.type:
+    description: Permission for backpack types, use backpack.type.name to enable a specific type
+    default: op

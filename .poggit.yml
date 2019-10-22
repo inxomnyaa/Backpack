@@ -1,0 +1,8 @@
+--- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/thebigsmileXD/Backpack
+projects:
+  Backpack:
+    path: ""
+    libs:
+    - src: CortexPE/Commando/Commando
+      version: ^0.3.1
+...

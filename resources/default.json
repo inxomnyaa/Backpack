@@ -1,0 +1,30 @@
+{
+	"format_version": "1.10.0",
+	"geometry.backpack.default": {
+		"texturewidth": 64,
+		"textureheight": 64,
+		"visible_bounds_width": 2,
+		"visible_bounds_height": 1,
+		"visible_bounds_offset": [0, 0.5, 0],
+		"bones": [
+			{
+				"name": "body",
+				"pivot": [0, 24, 0],
+				"cubes": [
+					{"origin": [-4.5, 13, 2], "size": [9, 10, 3], "uv": [0, 1]},
+					{"origin": [1.875, 16, -2.5], "size": [2, 8, 1], "uv": [6, 21], "inflate": -0.25},
+					{"origin": [1.875, 16, 1.5], "size": [2, 8, 1], "uv": [0, 20], "inflate": -0.25},
+					{"origin": [1.875, 23.5, -2.5], "size": [2, 1, 5], "uv": [9, 15], "inflate": -0.25},
+					{"origin": [1.875, 15.5, -2.5], "size": [2, 1, 5], "uv": [0, 14], "inflate": -0.25},
+					{"origin": [-3.875, 16, -2.5], "size": [2, 8, 1], "uv": [6, 21], "inflate": -0.25, "mirror": true},
+					{"origin": [-3.875, 16, 1.5], "size": [2, 8, 1], "uv": [0, 20], "inflate": -0.25, "mirror": true},
+					{"origin": [-3.875, 23.5, -2.5], "size": [2, 1, 5], "uv": [9, 15], "inflate": -0.25, "mirror": true},
+					{"origin": [-3.875, 15.5, -2.5], "size": [2, 1, 5], "uv": [0, 14], "inflate": -0.25, "mirror": true},
+					{"origin": [-0.5, 19, 4.5], "size": [1, 2, 1], "uv": [28, 14]},
+					{"origin": [-4.5, 20, 4.25], "size": [9, 3, 1], "uv": [12, 28], "inflate": 0.00001},
+					{"origin": [-3.5, 14, 4.25], "size": [7, 4, 1], "uv": [16, 23]}
+				]
+			}
+		]
+	}
+}
