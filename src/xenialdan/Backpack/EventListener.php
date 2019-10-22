@@ -3,6 +3,7 @@
 namespace xenialdan\Backpack;
 
 use pocketmine\event\Listener;
+use pocketmine\event\player\PlayerBedEnterEvent;
 use pocketmine\event\player\PlayerBedLeaveEvent;
 use pocketmine\event\player\PlayerDropItemEvent;
 use pocketmine\event\player\PlayerJoinEvent;
@@ -43,6 +44,11 @@ class EventListener implements Listener
 		if (Loader::wantsToWearBackpack($player)) {
 			Loader::spawnBackpack($player);
 		} else Loader::despawnBackpack($player);
+	}
+
+	public function onBedEnter(PlayerBedEnterEvent $event): void
+	{
+		Loader::despawnBackpack($event->getPlayer());
 	}
 
 	public function onSneak(PlayerToggleSneakEvent $event): void
