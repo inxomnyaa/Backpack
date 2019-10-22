@@ -3,7 +3,7 @@ projects:
   Backpack:
     path: ""
     icon: "resources/github/backpack.png"
-	excludeDirs:
+    excludeDirs:
     - "resources/github"
     libs:
     - src: CortexPE/Commando/Commando
