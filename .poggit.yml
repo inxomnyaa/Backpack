@@ -8,4 +8,6 @@ projects:
     libs:
     - src: CortexPE/Commando/Commando
       version: ^0.3.1
+    - src: muqsit/invmenu/InvMenu
+      version: ^2.1.0
 ...
