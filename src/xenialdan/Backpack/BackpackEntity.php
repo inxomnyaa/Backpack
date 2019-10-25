@@ -10,6 +10,8 @@ use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\level\Level;
 use pocketmine\math\Vector3;
 use pocketmine\nbt\tag\CompoundTag;
+use pocketmine\network\mcpe\protocol\SetActorLinkPacket;
+use pocketmine\network\mcpe\protocol\types\EntityLink;
 use pocketmine\Player;
 use pocketmine\utils\TextFormat;
 
@@ -31,6 +33,16 @@ class BackpackEntity extends Human
 		$this->setNameTagAlwaysVisible(false);
 		$this->getDataPropertyManager()->setVector3(self::DATA_RIDER_SEAT_POSITION, new Vector3());
 	}
+
+    protected function sendSpawnPacket(Player $player): void
+    {
+        parent::sendSpawnPacket($player);
+        if ($this->getOwningEntityId() !== null && $this->getOwningEntity()->getGenericFlag(self::DATA_FLAG_CHESTED)) {
+            $pk = new SetActorLinkPacket();
+            $pk->link = new EntityLink($this->getOwningEntityId(), $this->getId(), EntityLink::TYPE_PASSENGER, true);
+            $player->sendDataPacket($pk);
+        }
+    }
 
 	public function updateProperties()
 	{

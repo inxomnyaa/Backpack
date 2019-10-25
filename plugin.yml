@@ -1,6 +1,6 @@
 name: Backpack
 main: xenialdan\Backpack\Loader
-version: 0.0.1
+version: 0.2.0
 api: [3.9.3]
 author: XenialDan
 permissions:

@@ -267,9 +267,6 @@ class Loader extends PluginBase
 			$entity->spawnToAll();
 			if ($ride) {
 				$player->setGenericFlag(Entity::DATA_FLAG_CHESTED, true);
-				$pk = new SetActorLinkPacket();
-				$pk->link = new EntityLink($player->getId(), $entity->getId(), EntityLink::TYPE_PASSENGER, true);
-				$player->getLevel()->broadcastGlobalPacket($pk);
 			}
 			return $entity;
 		}
