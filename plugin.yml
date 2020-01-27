@@ -3,6 +3,8 @@ main: xenialdan\Backpack\Loader
 version: 0.2.0
 api: [3.9.3]
 author: XenialDan
+softdepend: [DEVirion]
+extensions: ["gd"]
 permissions:
 #TODO
   backpack.command:
