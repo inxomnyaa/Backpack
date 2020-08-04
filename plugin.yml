@@ -1,7 +1,7 @@
 name: Backpack
 main: xenialdan\Backpack\Loader
 version: 0.2.0
-api: [3.9.3]
+api: [3.14.0]
 author: XenialDan
 softdepend: [DEVirion]
 extensions: ["gd"]
