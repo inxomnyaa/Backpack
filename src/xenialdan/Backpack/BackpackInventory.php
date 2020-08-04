@@ -33,10 +33,10 @@ class BackpackInventory extends InvMenuInventory
 
 	public function onClose(Player $who) : void
 	{
-		parent::onClose($who);
 		if (count($this->getViewers()) === 1 and $this->getHolder()->isValid()) {
 			$this->getHolder()->getLevelNonNull()->broadcastLevelSoundEvent($this->getHolder()->add(0.5, 0.5, 0.5), $this->getCloseSound());
 		}
+		parent::onClose($who);
 	}
 
 	protected function getOpenSound(): int
