@@ -2,6 +2,11 @@
 
 namespace xenialdan\Backpack;
 
+use CortexPE\Commando\PacketHooker;
+use muqsit\invmenu\InvMenu;
+use muqsit\invmenu\InvMenuHandler;
+use pocketmine\block\BlockFactory;
+use pocketmine\block\BlockIds;
 use pocketmine\entity\Entity;
 use pocketmine\entity\Skin;
 use pocketmine\item\Item;
@@ -9,17 +14,17 @@ use pocketmine\level\Level;
 use pocketmine\level\LevelException;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\nbt\tag\StringTag;
-use pocketmine\network\mcpe\protocol\SetActorLinkPacket;
-use pocketmine\network\mcpe\protocol\types\EntityLink;
 use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\plugin\PluginException;
+use pocketmine\tile\Tile;
 use pocketmine\utils\TextFormat;
 
 class Loader extends PluginBase
 {
 	const TAG_BACKPACK_OWNER = "owner";
 	const TAG_BACKPACK = "backpack";
+	const MENU_TYPE_BACKPACK_CHEST = "backpack:chest";
 	/** @var self */
 	private static $instance;
 	/** @var Skin[] */
@@ -97,7 +102,7 @@ class Loader extends PluginBase
 		Backpack::init();
 
 		Entity::registerEntity(BackpackEntity::class, true, ['backpack']);
-		$this->getServer()->getCommandMap()->register("Backpack", new Commands("backpack", "Manage your backpack"));
+		$this->getServer()->getCommandMap()->register("Backpack", new Commands($this, "backpack", "Manage your backpack"));
 
 	}
 
@@ -219,6 +224,19 @@ class Loader extends PluginBase
 	{
 		@mkdir($this->getDataFolder() . "players");
 		$this->getServer()->getPluginManager()->registerEvents(new EventListener(), $this);
+
+		if (!PacketHooker::isRegistered()) {
+			PacketHooker::register($this);
+		}
+		if (!InvMenuHandler::isRegistered()) {
+			InvMenuHandler::register($this);
+		}
+		if (InvMenuHandler::getMenuType(self::MENU_TYPE_BACKPACK_CHEST) === null) {
+			$copy = InvMenuHandler::getMenuType(InvMenu::TYPE_CHEST);
+			assert($copy !== null);
+			InvMenuHandler::registerMenuType(new BackpackMenuMetadata(self::MENU_TYPE_BACKPACK_CHEST, $copy->getSize(), $copy->getWindowType(), BlockFactory::get(BlockIds::CHEST), Tile::CHEST));
+		}
+
 		foreach ($this->getServer()->getOnlinePlayers() as $player) {
 			self::loadBackpacks($player);
 			if (Loader::wantsToWearBackpack($player))

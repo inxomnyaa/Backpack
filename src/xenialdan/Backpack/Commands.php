@@ -15,7 +15,6 @@ class Commands extends BaseCommand
 
 	/**
 	 * @throws \CortexPE\Commando\exception\ArgumentOrderException
-	 * @throws \CortexPE\Commando\exception\SubCommandCollision
 	 */
 	protected function prepare(): void
 	{

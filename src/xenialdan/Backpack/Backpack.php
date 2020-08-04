@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace xenialdan\Backpack;
 
+use Closure;
 use muqsit\invmenu\InvMenu;
+use muqsit\invmenu\transaction\InvMenuTransaction;
+use muqsit\invmenu\transaction\InvMenuTransactionResult;
 use pocketmine\item\Item;
 use pocketmine\nbt\BigEndianNBTStream;
 use pocketmine\nbt\tag\CompoundTag;
@@ -42,18 +45,18 @@ class Backpack
 	{
 		$this->playername = $playername;
 		$this->type = $type;
-		$this->menu = InvMenu::create(BackpackInventory::class);
+		$this->menu = InvMenu::create(Loader::MENU_TYPE_BACKPACK_CHEST);
 		$this->menu->getInventory()->setVaultData($this);
-		$this->menu->setListener([$this, "onInventoryTransaction"]);
-		$this->menu->setInventoryCloseListener([$this, "onInventoryClose"]);
+		$this->menu->setListener(Closure::fromCallable([$this, "onInventoryTransaction"]));
+		$this->menu->setInventoryCloseListener(Closure::fromCallable([$this, "onInventoryClose"]));
 		$this->menu->setName(strtr(self::$name_format, [
 			"{PLAYER}" => $playername,
 		]));
 	}
 
-	public function onInventoryTransaction(Player $player): bool
+	public function onInventoryTransaction(InvMenuTransaction $transaction): InvMenuTransactionResult
 	{
-		return strtolower($this->playername) === $player->getLowerCaseName() || $player->hasPermission("playervaults.others.edit");
+		return strtolower($this->playername) === $transaction->getPlayer()->getLowerCaseName() || $transaction->getPlayer()->hasPermission("playervaults.others.edit") ? $transaction->continue() : $transaction->discard();
 	}
 
 	public function onInventoryClose(Player $viewer, BackpackInventory $inventory): void
