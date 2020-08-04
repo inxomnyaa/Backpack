@@ -39,7 +39,7 @@ class BackpackEntity extends Human
         parent::sendSpawnPacket($player);
         if ($this->getOwningEntityId() !== null && $this->getOwningEntity()->getGenericFlag(self::DATA_FLAG_CHESTED)) {
             $pk = new SetActorLinkPacket();
-            $pk->link = new EntityLink($this->getOwningEntityId(), $this->getId(), EntityLink::TYPE_PASSENGER, true);
+            $pk->link = new EntityLink($this->getOwningEntityId(), $this->getId(), EntityLink::TYPE_PASSENGER, true, false);
             $player->sendDataPacket($pk);
         }
     }

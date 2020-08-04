@@ -7,7 +7,7 @@ projects:
     - "resources/github"
     libs:
     - src: CortexPE/Commando/Commando
-      version: ^0.3.1
+      version: ^2.1.1
     - src: muqsit/invmenu/InvMenu
-      version: ^2.1.0
+      version: ^4.0.0
 ...

@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace xenialdan\Backpack;
 
-use muqsit\invmenu\inventories\ChestInventory;
+use muqsit\invmenu\inventory\InvMenuInventory;
 use pocketmine\network\mcpe\protocol\LevelSoundEventPacket;
+use pocketmine\Player;
 
-class BackpackInventory extends ChestInventory
+class BackpackInventory extends InvMenuInventory
 {
 	/** @var Backpack */
 	private $vault_data;
@@ -22,9 +23,20 @@ class BackpackInventory extends ChestInventory
 		return $this->vault_data;
 	}
 
-	public function getName(): string
+	public function onOpen(Player $who) : void
 	{
-		return "Backpack";
+		parent::onOpen($who);
+		if (count($this->getViewers()) === 1 and $this->getHolder()->isValid()) {
+			$this->getHolder()->getLevelNonNull()->broadcastLevelSoundEvent($this->getHolder()->add(0.5, 0.5, 0.5), $this->getOpenSound());
+		}
+	}
+
+	public function onClose(Player $who) : void
+	{
+		if (count($this->getViewers()) === 1 and $this->getHolder()->isValid()) {
+			$this->getHolder()->getLevelNonNull()->broadcastLevelSoundEvent($this->getHolder()->add(0.5, 0.5, 0.5), $this->getCloseSound());
+		}
+		parent::onClose($who);
 	}
 
 	protected function getOpenSound(): int
